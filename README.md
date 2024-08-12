@@ -90,6 +90,14 @@ The following query types are available:
 \Spatie\ElasticsearchQueryBuilder\Queries\MultiMatchQuery::create('john', ['email', 'email'], fuzziness: 'auto');
 ```
 
+#### `QueryStringQuery`
+
+[https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.htmll)
+
+```php
+\Spatie\ElasticsearchQueryBuilder\Queries\QueryStringQuery::create('query', defaultField: '*', fuzziness: 'auto', boost: 0.5);
+```
+
 #### `NestedQuery`
 
 [https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-nested-query.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-nested-query.html)
