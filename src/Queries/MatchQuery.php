@@ -8,16 +8,18 @@ class MatchQuery implements Query
         string $field,
         string | int $query,
         null | string | int $fuzziness = null,
-        null | float $boost = null
+        null | float $boost = null,
+        ?string $analyzer = null
     ): self {
-        return new self($field, $query, $fuzziness, $boost);
+        return new self($field, $query, $fuzziness, $boost, $analyzer);
     }
 
     public function __construct(
         protected string $field,
         protected string | int $query,
         protected null | string | int $fuzziness = null,
-        protected null | float $boost = null
+        protected null | float $boost = null,
+        protected ?string $analyzer = null
     ) {
     }
 
@@ -37,6 +39,10 @@ class MatchQuery implements Query
 
         if ($this->boost) {
             $match['match'][$this->field]['boost'] = $this->boost;
+        }
+
+        if ($this->analyzer) {
+            $match['match'][$this->field]['analyzer'] = $this->analyzer;
         }
 
         return $match;
