@@ -13,9 +13,10 @@ class MatchQuery implements Query
         string | int $query,
         null | string | int $fuzziness = null,
         null | float $boost = null,
-        null | string $operator = 'or'
+        null | string $operator = 'or',
+        ?string $analyzer = null
     ): self {
-        return new self($field, $query, $fuzziness, $boost, $operator);
+        return new self($field, $query, $fuzziness, $boost, $operator, $analyzer);
     }
 
     public function __construct(
@@ -23,7 +24,8 @@ class MatchQuery implements Query
         protected string | int $query,
         protected null | string | int $fuzziness = null,
         protected null | float $boost = null,
-        protected null | string $operator = 'or'
+        protected null | string $operator = 'or',
+        protected ?string $analyzer = null
     ) {
         if (! in_array(strtolower($operator), self::VALID_OPERATORS)) {
             throw new InvalidOperatorValue;
@@ -50,6 +52,10 @@ class MatchQuery implements Query
 
         if ($this->operator) {
             $match['match'][$this->field]['operator'] = $this->operator;
+        }
+
+        if ($this->analyzer) {
+            $match['match'][$this->field]['analyzer'] = $this->analyzer;
         }
 
         return $match;
