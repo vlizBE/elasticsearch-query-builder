@@ -7,6 +7,7 @@ use Elastic\Elasticsearch\Response\Elasticsearch;
 use Http\Promise\Promise;
 use Spatie\ElasticsearchQueryBuilder\Aggregations\Aggregation;
 use Spatie\ElasticsearchQueryBuilder\Queries\BoolQuery;
+use Spatie\ElasticsearchQueryBuilder\Queries\NestedQuery\InnerHits;
 use Spatie\ElasticsearchQueryBuilder\Queries\Query;
 use Spatie\ElasticsearchQueryBuilder\Sorts\Sorting;
 
@@ -24,6 +25,8 @@ class Builder
 
     protected ?int $from = null;
 
+    protected ?float $minScore = null;
+
     protected ?array $searchAfter = null;
 
     protected ?array $fields = null;
@@ -35,6 +38,8 @@ class Builder
     protected ?array $highlight = null;
 
     protected ?BoolQuery $postFilterQuery = null;
+
+    protected ?array $collapse = null;
 
     public function __construct(protected Client $client)
     {
@@ -93,7 +98,7 @@ class Builder
             $params['from'] = $this->from;
         }
 
-        if($this->trackTotalHits) {
+        if ($this->trackTotalHits) {
             $params['track_total_hits'] = true;
         }
 
@@ -105,6 +110,11 @@ class Builder
         $this->searchIndex = $searchIndex;
 
         return $this;
+    }
+
+    public function getIndex(): ?string
+    {
+        return $this->searchIndex;
     }
 
     public function trackTotalHits(bool $value = true): static
@@ -124,6 +134,13 @@ class Builder
     public function from(int $from): static
     {
         $this->from = $from;
+
+        return $this;
+    }
+
+    public function minScore(float $minScore): static
+    {
+        $this->minScore = $minScore;
 
         return $this;
     }
@@ -167,6 +184,24 @@ class Builder
         return $this;
     }
 
+    public function collapse(string $field, array|InnerHits|null $innerHits = null, ?int $maxConcurrentGroupRequests = null): static
+    {
+        $this->collapse = ['field' => $field];
+
+        if ($innerHits) {
+            if ($innerHits instanceof InnerHits) {
+                $innerHits = $innerHits->toArray();
+            }
+            $this->collapse['inner_hits'] = $innerHits;
+        }
+
+        if ($maxConcurrentGroupRequests !== null) {
+            $this->collapse['max_concurrent_group_searches'] = $maxConcurrentGroupRequests;
+        }
+
+        return $this;
+    }
+
     public function getPayload(): array
     {
         $payload = [];
@@ -177,6 +212,10 @@ class Builder
 
         if ($this->size !== null) {
             $payload['size'] = $this->size;
+        }
+
+        if ($this->minScore !== null) {
+            $payload['min_score'] = $this->minScore;
         }
 
         if ($this->query) {
@@ -205,6 +244,10 @@ class Builder
 
         if ($this->postFilterQuery) {
             $payload['post_filter'] = $this->postFilterQuery->toArray();
+        }
+
+        if ($this->collapse) {
+            $payload['collapse'] = $this->collapse;
         }
 
         return $payload;

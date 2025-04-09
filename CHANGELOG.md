@@ -2,6 +2,106 @@
 
 All notable changes to `elasticsearch-query-builder` will be documented in this file.
 
+## 3.6.0 - 2025-03-10
+
+### What's Changed
+
+* Add the min_score to the builder by @wgriffioen in https://github.com/spatie/elasticsearch-query-builder/pull/68
+
+### New Contributors
+
+* @wgriffioen made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/68
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.5.1...3.6.0
+
+## 3.5.1 - 2025-02-19
+
+### What's Changed
+
+* Collapse: Make use of nested inner hits query object by @sventendo in https://github.com/spatie/elasticsearch-query-builder/pull/67
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.5.0...3.5.1
+
+## 3.5.0 - 2025-02-11
+
+### What's Changed
+
+* Add elasticsearch `collapse` on query builder by @chirag-techrayslabs in https://github.com/spatie/elasticsearch-query-builder/pull/65
+
+### New Contributors
+
+* @chirag-techrayslabs made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/65
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.4.0...3.5.0
+
+## 3.4.0 - 2025-02-10
+
+### What's Changed
+
+* Add MultiBuilder to support multi-search API  by @chrispappas in https://github.com/spatie/elasticsearch-query-builder/pull/64
+
+### New Contributors
+
+* @chrispappas made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/64
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.3.0...3.4.0
+
+## 3.3.0 - 2025-01-20
+
+### What's Changed
+
+* Add boost parameter to Terms query by @floristenhove in https://github.com/spatie/elasticsearch-query-builder/pull/54
+* Nested query improvements by @dam-bal in https://github.com/spatie/elasticsearch-query-builder/pull/53
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.2.2...3.3.0
+
+## 3.2.2 - 2025-01-17
+
+### What's Changed
+
+* Fix missing args for create func by @l3aro in https://github.com/spatie/elasticsearch-query-builder/pull/60
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.2.1...3.2.2
+
+## 3.2.1 - 2025-01-17
+
+### What's Changed
+
+* Support operator in MatchQuery by @l3aro in https://github.com/spatie/elasticsearch-query-builder/pull/59
+
+### New Contributors
+
+* @l3aro made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/59
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.2.0...3.2.1
+
+## 3.2.0 - 2024-11-21
+
+### What's Changed
+
+* Add percolate query by @floristenhove in https://github.com/spatie/elasticsearch-query-builder/pull/57
+* Allow setting values to null for RangeQuery by @bram-pkg in https://github.com/spatie/elasticsearch-query-builder/pull/56
+* Add geoshape query by @floristenhove in https://github.com/spatie/elasticsearch-query-builder/pull/58
+
+### New Contributors
+
+* @floristenhove made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/57
+* @bram-pkg made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/56
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.1.0...3.2.0
+
+## 3.1.0 - 2024-10-03
+
+### What's Changed
+
+* feat: add MatchPhraseQuery by @summerKK in https://github.com/spatie/elasticsearch-query-builder/pull/50
+
+### New Contributors
+
+* @summerKK made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/50
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.0.0...3.1.0
+
 ## 3.0.0 - 2024-05-06
 
 See [upgrading.md](./UPGRADING.md) for possible breaking changes.
