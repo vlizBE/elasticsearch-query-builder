@@ -8,23 +8,34 @@ class TermQuery implements Query
 
     protected bool|int|string $value;
 
-    public static function create(string $field, bool|int|string $value): static
+    protected ?float $boost = null;
+
+    public static function create(string $field, bool|int|string $value, ?float $boost = null): static
     {
-        return new self($field, $value);
+        return new self($field, $value, $boost);
     }
 
-    public function __construct(string $field, bool|int|string $value)
+    public function __construct(string $field, bool|int|string $value, ?float $boost = null)
     {
         $this->field = $field;
         $this->value = $value;
+        $this->boost = $boost;
     }
 
     public function toArray(): array
     {
-        return [
+        $term = [
             'term' => [
-                $this->field => $this->value,
+                $this->field => [
+                    'value' => $this->value,
+                ],
             ],
         ];
+
+        if ($this->boost !== null) {
+            $term['term'][$this->field]['boost'] = $this->boost;
+        }
+
+        return $term;
     }
 }
