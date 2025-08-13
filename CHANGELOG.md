@@ -2,6 +2,35 @@
 
 All notable changes to `elasticsearch-query-builder` will be documented in this file.
 
+## 3.8.1 - 2025-08-04
+
+### What's Changed
+
+* Add isEmpty method to BoolQuery by @floristenhove in https://github.com/spatie/elasticsearch-query-builder/pull/72
+* Fix missing parameter type restrictions in aggregations and sorts by @summerKK in https://github.com/spatie/elasticsearch-query-builder/pull/74
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.8.0...3.8.1
+
+## 3.8.0 - 2025-06-05
+
+### What's Changed
+
+* Add operator, boost, prefix length, and max expansions to MultiMatchQuery by @floristenhove in https://github.com/spatie/elasticsearch-query-builder/pull/71
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.7.0...3.8.0
+
+## 3.7.0 - 2025-04-14
+
+### What's Changed
+
+* Add DateHistogramAggregation by @Crmteam-IVG in https://github.com/spatie/elasticsearch-query-builder/pull/66
+
+### New Contributors
+
+* @Crmteam-IVG made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/66
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.6.0...3.7.0
+
 ## 3.6.0 - 2025-03-10
 
 ### What's Changed

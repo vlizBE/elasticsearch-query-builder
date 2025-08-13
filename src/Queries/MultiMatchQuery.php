@@ -2,6 +2,8 @@
 
 namespace Spatie\ElasticsearchQueryBuilder\Queries;
 
+use Spatie\ElasticsearchQueryBuilder\Exceptions\InvalidOperatorValue;
+
 class MultiMatchQuery implements Query
 {
     public const TYPE_BEST_FIELDS = 'best_fields';
@@ -10,24 +12,36 @@ class MultiMatchQuery implements Query
     public const TYPE_PHRASE = 'phrase';
     public const TYPE_PHRASE_PREFIX = 'phrase_prefix';
     public const TYPE_BOOL_PREFIX = 'bool_prefix';
+    protected const VALID_OPERATORS = ['and', 'or'];
 
     public static function create(
         string $query,
         array $fields,
         int | string | null $fuzziness = null,
-        ?string $type = null,
-        ?string $analyzer = null
+        ?string $analyzer = null,
+        string | null $type = null,
+        string | null $operator = null,
+        float | null $boost = null,
+        int | null $prefixLength = null,
+        int | null $maxExpansions = null
     ): static {
-        return new self($query, $fields, $fuzziness, $type, $analyzer);
+        return new self($query, $fields, $fuzziness, $type, $operator, $analyzer, $boost, $prefixLength, $maxExpansions);
     }
 
     public function __construct(
         protected string $query,
         protected array $fields,
         protected int | string | null $fuzziness = null,
-        protected ?string $type = null,
-        protected ?string $analyzer = null
+        protected ?string $analyzer = null,
+        protected string | null $type = null,
+        protected string | null $operator = null,
+        protected float | null $boost = null,
+        protected int | null $prefixLength = null,
+        protected int | null $maxExpansions = null
     ) {
+        if ($operator && ! in_array(strtolower($operator), self::VALID_OPERATORS)) {
+            throw new InvalidOperatorValue;
+        }
     }
 
     public function toArray(): array
@@ -49,6 +63,22 @@ class MultiMatchQuery implements Query
 
         if ($this->analyzer) {
             $multiMatch['multi_match']['analyzer'] = $this->analyzer;
+        }
+
+        if ($this->operator) {
+            $multiMatch['multi_match']['operator'] = $this->operator;
+        }
+
+        if ($this->boost !== null) {
+            $multiMatch['multi_match']['boost'] = $this->boost;
+        }
+
+        if ($this->prefixLength !== null) {
+            $multiMatch['multi_match']['prefix_length'] = $this->prefixLength;
+        }
+
+        if ($this->maxExpansions !== null) {
+            $multiMatch['multi_match']['max_expansions'] = $this->maxExpansions;
         }
 
         return $multiMatch;
