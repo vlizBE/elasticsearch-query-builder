@@ -20,7 +20,7 @@ class MultiMatchQuery implements Query
         int | string | null $fuzziness = null,
         ?string $analyzer = null,
         string | null $type = null,
-        string | null $operator = null,
+        string | null $operator = 'or',
         float | null $boost = null,
         int | null $prefixLength = null,
         int | null $maxExpansions = null
@@ -34,7 +34,7 @@ class MultiMatchQuery implements Query
         protected int | string | null $fuzziness = null,
         protected ?string $analyzer = null,
         protected string | null $type = null,
-        protected string | null $operator = null,
+        protected string | null $operator = 'or',
         protected float | null $boost = null,
         protected int | null $prefixLength = null,
         protected int | null $maxExpansions = null
