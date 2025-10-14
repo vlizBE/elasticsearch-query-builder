@@ -20,12 +20,12 @@ class MultiMatchQuery implements Query
         int | string | null $fuzziness = null,
         ?string $analyzer = null,
         string | null $type = null,
-        string | null $operator = 'or',
+        string $operator = 'or',
         float | null $boost = null,
         int | null $prefixLength = null,
         int | null $maxExpansions = null
     ): static {
-        return new self($query, $fields, $fuzziness, $type, $operator, $analyzer, $boost, $prefixLength, $maxExpansions);
+        return new self($query, $fields, $fuzziness, $analyzer, $type, $operator, $boost, $prefixLength, $maxExpansions);
     }
 
     public function __construct(
@@ -34,7 +34,7 @@ class MultiMatchQuery implements Query
         protected int | string | null $fuzziness = null,
         protected ?string $analyzer = null,
         protected string | null $type = null,
-        protected string | null $operator = 'or',
+        protected string $operator,
         protected float | null $boost = null,
         protected int | null $prefixLength = null,
         protected int | null $maxExpansions = null
