@@ -2,6 +2,40 @@
 
 All notable changes to `elasticsearch-query-builder` will be documented in this file.
 
+## 3.9.2 - 2026-01-05
+
+### What's Changed
+
+* feat: Enhance Builder class by adding Conditionable trait for improved query capabilities by @greezen in https://github.com/spatie/elasticsearch-query-builder/pull/79
+
+### New Contributors
+
+* @greezen made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/79
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.9.1...3.9.2
+
+## 3.9.1 - 2025-12-01
+
+### What's Changed
+
+* Terms aggregation: Support "include" and "exclude" options for filtering values by @sventendo in https://github.com/spatie/elasticsearch-query-builder/pull/78
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.9.0...3.9.1
+
+## 3.9.0 - 2025-09-29
+
+### What's Changed
+
+* Update issue template by @AlexVanderbist in https://github.com/spatie/elasticsearch-query-builder/pull/77
+* Added `ScriptSort` on Query Builder by @chirag-techrayslabs in https://github.com/spatie/elasticsearch-query-builder/pull/75
+* Comprehensive ElasticSearch Query and Aggregation Enhancement by @summerKK in https://github.com/spatie/elasticsearch-query-builder/pull/76
+
+### New Contributors
+
+* @AlexVanderbist made their first contribution in https://github.com/spatie/elasticsearch-query-builder/pull/77
+
+**Full Changelog**: https://github.com/spatie/elasticsearch-query-builder/compare/3.8.1...3.9.0
+
 ## 3.8.1 - 2025-08-04
 
 ### What's Changed
